@@ -20,8 +20,9 @@ defmodule ShopWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    get "/product", ProductController, :index
-    get "/product/:id", ProductController, :show
+    # get "/product", ProductController, :index
+    # get "/product/:id", ProductController, :show
+    resources "/product", ProductController, except: [:delete]
   end
 
   # Other scopes may use custom stacks.

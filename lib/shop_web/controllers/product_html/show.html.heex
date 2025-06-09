@@ -2,6 +2,7 @@
   From Heex
 </h1>
 
-<h2>
-  show page and your id : {@id} and name is {@name}
+<h2 :if={!@product}>
+  Product is not available.
 </h2>
+ <.product :if={@product} name={@product.name} />
