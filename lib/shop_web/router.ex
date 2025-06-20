@@ -3,7 +3,7 @@ defmodule ShopWeb.Router do
   alias ShopWeb.Plugs
 
   pipeline :browser do
-    plug :accepts, ["html"]
+    plug :accepts, ["html", "json"]
     plug :fetch_session
     plug :fetch_live_flash
     plug :put_root_layout, html: {ShopWeb.Layouts, :root}
@@ -20,15 +20,18 @@ defmodule ShopWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    # get "/product", ProductController, :index
-    # get "/product/:id", ProductController, :show
+    get "/product", ProductController, :index
+    get "/product/:slug", ProductController, :show
     resources "/product", ProductController, except: [:delete]
+    resources "/promotions", PromotionController
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ShopWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", ShopWeb do
+    pipe_through :api
+
+    get "/products", ApiContoller, :index
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:shop, :dev_routes) do

@@ -1,2 +1,7 @@
+iex.bat -S mix phx.server
+
 # Request Life-cycle
+Repo.get_by(Product, slug: "diablo")
+
+mix phx.gen.html Promotions Promotion promotions name:string code:string:unique expires_at:utc_datetime
 

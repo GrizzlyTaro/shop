@@ -5,4 +5,8 @@
 <h2 :if={!@product}>
   Product is not available.
 </h2>
- <.product :if={@product} name={@product.name} />
+ <.product :if={@product} product={@product} />
+<p>Id : {@product.id}</p>
+
+<p>Name : {@product.name}</p>
+ <a href={~p"/product"}>All Products</a>
